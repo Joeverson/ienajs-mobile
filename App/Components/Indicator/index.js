@@ -1,22 +1,26 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Styles from "./Indicator.styles";
 import { View, Row, Text, TouchableOpacity } from "@shoutem/ui";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-class Indicator extends PureComponent {
-  state = {
-    indicators: this.props.data
-  };
+class Indicator extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      indicators: this.props.data
+    };
+  }
 
   render() {
     return (
       <View
-        style={this.props.style}
+        style={{ ...this.props.style, ...Styles.background }}
         styleName={this.props.styleName}
       >
-        <View>
+        <View styleName="space-between">
           {this.state.indicators.map((map, it) => (
-            <TouchableOpacity key={it} onPress={this.props.onPress}>
+            <TouchableOpacity key={it} onPress={() => this.props.navigation.navigate(map.to)}>
               <Row styleName="small" style={{ margin: 10, borderRadius: 16 }}>
                 <Text>{map.name}</Text>
                 <Icon styleName="disclosure" name="chevron-right" />

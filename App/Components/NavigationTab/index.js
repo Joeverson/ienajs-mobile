@@ -1,24 +1,27 @@
 import React from "react";
 import Styles from "./NavigationTab.styles";
-import { View, Text } from "@shoutem/ui";
+import { View, Text, TouchableOpacity } from "@shoutem/ui";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import {
+  NavigationActions
+} from 'react-navigation'
 
 class NavigationTab extends React.Component {
   state = {
     menus: [
       {
         name: "Notícias",
-        link: "",
+        to: "",
         icon: "newspaper"
       },
       {
         name: "Membros",
-        link: "",
+        to: "",
         icon: "users"
       },
       {
         name: "Dashboard",
-        link: "",
+        to: "DashboardScreen",
         icon: "tachometer-alt"
       }
     ]
@@ -33,10 +36,14 @@ class NavigationTab extends React.Component {
       <View style={Styles.shadow} styleName={this.props.styleName}>
         <View styleName="horizontal space-between">
           {this.state.menus.map((data, it) => (
-            <View styleName="vertical h-center" key={it}>
-              <Icon name={data.icon} />
-              <Text>{data.name}</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.props.nav.dispatch(NavigationActions.navigate({
+                routeName: data.to
+              }))} key={it}>
+              <View styleName="vertical h-center">
+                <Icon name={data.icon} />
+                <Text>{data.name}</Text>
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
       </View>

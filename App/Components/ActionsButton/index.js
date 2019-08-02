@@ -12,7 +12,7 @@ export default class extends PureComponent {
     return (
       <View styleName={this.props.styleName}>
         {this.state.indicators.map((map, it) => (
-          <TouchableOpacity onPress={this.props.onPress} key={it}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate(map.to)} key={it}>
             <Row styleName="small">
               <Icon style={Styles.iconSide} name={map.icon} />
               <Text>{map.name}</Text>
