@@ -2,6 +2,8 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import LaunchScreen from "../Containers/LaunchScreen";
 import DashboardScreen from "../Containers/DashboardScreen";
 import ConsolidationListScreen from "../Containers/Consolidation/ConsolidationListScreen";
+import FrequencyListScreen from "../Containers/Frequency/FrequencyListScreen";
+import MemberListScreen from "../Containers/Member/MemberListScreen";
 
 import styles from "./Styles/NavigationStyles";
 
@@ -10,11 +12,13 @@ const PrimaryNav = createStackNavigator(
   {
     LaunchScreen: { screen: LaunchScreen },
     DashboardScreen: { screen: DashboardScreen },
-    ConsolidationListScreen: { screen: ConsolidationListScreen }
+    FrequencyListScreen: { screen: FrequencyListScreen },
+    ConsolidationListScreen: { screen: ConsolidationListScreen },
+    MemberListScreen: { screen: MemberListScreen }
   },
   {
     headerMode: "none",
-    initialRouteName: "ConsolidationListScreen",
+    initialRouteName: "MemberListScreen",
     navigationOptions: {
       headerStyle: styles.header
     }

@@ -6,7 +6,7 @@ import {
   Caption,
   Divider
 } from '@shoutem/ui'
-import Styles from '../Styles/ConsolidationListScreenStyles'
+import Styles from '../Styles/FrequencyListScreenStyles'
 
 // components
 import Header from '../../Components/Header'
@@ -14,7 +14,7 @@ import Search from '../../Components/Search'
 
 export default class extends Component {
   state = {
-    consolidations: [
+    frequencys: [
       {
         name: 'asdasd',
         endereco: 'asdasdasd',
@@ -58,27 +58,26 @@ export default class extends Component {
       <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10,}}>
         <Divider />
         <Subtitle>Nome das coisas</Subtitle>
-        <Caption>asda asdasd</Caption>
-        <Caption>(00) 00000-0000</Caption>
+        <Caption>Celula: asda asdasd</Caption>
       
-        <View styleName = "horizontal space-between" >
+        <View styleName = "horizontal space-between" style={{marginTop: 10}}>
           <View>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
           </View>
           <View>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
           </View>
           <View>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
+            <Caption>10/08/2019</Caption>
           </View>
         </View>
       </View>
@@ -89,10 +88,10 @@ export default class extends Component {
     return (
       <View style={{...Styles.mainContainer }} styleName='vertical space-between'>
         <View style={{ evoluation: 2 }}>
-          <Header title="Consolidações" {...this.props} />
-          <Search />
+          <Header title="Frequência" {...this.props} />
+          <Search placeholder='Pesquisar membro'/>
         </View>
-        <ListView data={this.state.consolidations} renderRow={this.renderRow} />
+        <ListView data={this.state.frequencys} renderRow={this.renderRow} />
       </View>
     )
   }

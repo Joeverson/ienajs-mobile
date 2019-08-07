@@ -9,16 +9,21 @@ class Header extends PureComponent {
   };
 
   render () {
+    const title = this.props.title.split(' ')
+    const firstName = title.shift()
+    const lastName = title.join(' ')
+
     return (
       <View>
-        <Row>
+        <View style={{ marginTop: 10, marginBottom: 10, }}>
           <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{ padding: 10 }}>
             <Icon size={18} name="arrow-left" />
           </TouchableOpacity>
-        </Row>
-        <Row>
-          <Heading>Consolidações</Heading>
-        </Row>
+        </View>
+        <View style={{ marginBottom: 5, }}>
+          <Heading>{firstName}</Heading>
+          <Heading>{lastName}</Heading>
+        </View>
       </View>
     )
   }

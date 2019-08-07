@@ -12,12 +12,19 @@ class Header extends PureComponent {
   render () {
     return (
       <Row styleName='small'>
-        <View styleName='horizontal'>
+        < View styleName = 'horizontal'
+        style = {
+          {
+            backgroundColor: Colors.GRAY_LIGHT,
+            borderRadius: 10,
+          }
+        } >
           <TextInput
             style={{
               flex: 2,
+              backgroundColor: Colors.GRAY_LIGHT,
             }}
-            placeholder={'Username or email'}
+            placeholder={this.props.placeholder}
             onChangeText={() => {}}
           />
           <TouchableOpacity
