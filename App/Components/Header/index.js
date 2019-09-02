@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, Row, Heading, TouchableOpacity } from '@shoutem/ui';
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { Colors } from '../../Themes';
+import Search from '../../Components/Search'
+
 //import { Test } from './Header.styles';
 
 class Header extends PureComponent { 
@@ -8,22 +11,39 @@ class Header extends PureComponent {
     hasError: false,
   };
 
+  _search = () => {
+    if (this.props.search) {
+      return <Search / >
+    }
+  }
+
   render () {
     const title = this.props.title.split(' ')
     const firstName = title.shift()
     const lastName = title.join(' ')
 
     return (
-      <View>
-        <View style={{ marginTop: 10, marginBottom: 10, }}>
+      < View style = {
+        {
+          backgroundColor: Colors.BLUE,
+          paddingLeft: 10,
+          paddingRight: 10,
+          paddingBottom: 5,
+          elevation: 1,
+        }
+      } >
+        <View style={{}}>
           <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{ padding: 10 }}>
-            <Icon size={18} name="arrow-left" />
+            <Icon size={18} color='white' name="arrow-left" />
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 5, }}>
-          <Heading>{firstName}</Heading>
-          <Heading>{lastName}</Heading>
+        <View style={{ marginLeft: 5, justifyContent: 'center',}}>
+          <Heading style={{ color: 'white' }}>{firstName}</Heading>
+          <Heading style={{ color: 'white' }}>{lastName}</Heading>
         </View>
+        {
+          this._search()
+        }
       </View>
     )
   }

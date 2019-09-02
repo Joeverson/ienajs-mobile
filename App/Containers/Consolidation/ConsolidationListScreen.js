@@ -4,7 +4,9 @@ import {
   Subtitle,
   ListView,
   Caption,
-  Divider
+  Divider,
+  NavigationBar,
+  Title
 } from '@shoutem/ui'
 import Styles from '../Styles/ConsolidationListScreenStyles'
 
@@ -88,9 +90,8 @@ export default class extends Component {
   render () {
     return (
       <View style={{...Styles.mainContainer }} styleName='vertical space-between'>
-        <View style={{ evoluation: 2 }}>
-          <Header title="Consolidações" {...this.props} />
-          <Search />
+        <View style={{ evoluation: 2 }}>          
+          <Header search title="Consolidações" {...this.props} />
         </View>
         <ListView data={this.state.consolidations} renderRow={this.renderRow} />
       </View>

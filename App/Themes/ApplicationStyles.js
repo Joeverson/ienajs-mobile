@@ -10,8 +10,8 @@ const ApplicationStyles = {
     mainContainer: {
       flex: 1,
       backgroundColor: Colors.transparent,
-      marginLeft: 10,
-      marginRight: 10,
+      // paddingLeft: 10,
+      // paddingRight: 10,
     },
     backgroundImage: {
       position: 'absolute',

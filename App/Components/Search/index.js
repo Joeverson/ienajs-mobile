@@ -15,14 +15,14 @@ class Header extends PureComponent {
         < View styleName = 'horizontal'
         style = {
           {
-            backgroundColor: Colors.GRAY_LIGHT,
+            backgroundColor: Colors.WHITE,
             borderRadius: 10,
           }
         } >
           <TextInput
             style={{
               flex: 2,
-              backgroundColor: Colors.GRAY_LIGHT,
+              backgroundColor: Colors.WHITE,
             }}
             placeholder={this.props.placeholder}
             onChangeText={() => {}}

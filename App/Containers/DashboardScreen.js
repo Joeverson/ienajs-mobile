@@ -24,7 +24,7 @@ export default class DashboardScreen extends Component {
       ],
       actions: [{
           name: "Adicionar Consolidação",
-          to: "",
+          to: "ConsolidationAddScreen",
           icon: "book"
         },
         {
@@ -51,7 +51,13 @@ export default class DashboardScreen extends Component {
       <View style={ Styles.mainContainer } styleName="vertical space-between">
         <Indicator {...this.props} style={{ flex: 2 }} data={this.state.indicators} />
 
-        <ActionsButton data={this.state.actions} />
+        < ActionsButton {
+          ...this.props
+        }
+        data = {
+          this.state.actions
+        }
+        />
       </View>
     );
   }
