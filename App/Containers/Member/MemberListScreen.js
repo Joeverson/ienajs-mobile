@@ -1,97 +1,81 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   View,
   Subtitle,
   ListView,
   Caption,
   Divider,
-  Text,
-  Row,
-  Switch
-} from '@shoutem/ui'
-import Styles from '../Styles/FrequencyListScreenStyles'
-import Icon from "react-native-vector-icons/FontAwesome5";
+  NavigationBar,
+  Title,
+} from "@shoutem/ui";
+import Styles from "../Styles/ConsolidationListScreenStyles";
 
 // components
-import Header from '../../Components/Header'
-import { Colors } from '../../Themes';
+import Header from "../../Components/Header";
+import Search from "../../Components/Search";
 
 export default class extends Component {
   state = {
-    frequencys: [
+    consolidations: [
       {
-        date: '10/09/2019',
-        checked: false,
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
       },
       {
-        date: '17/09/2019',
-        checked: true,
-      }
-    ]
-  }
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+      {
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+      {
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+      {
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+      {
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+      {
+        name: "asdasd",
+        endereco: "asdasdasd",
+        consolidations: [],
+      },
+    ],
+  };
 
-  renderRow(data) {
+  renderRow = data => {
     return (
-      <Row>
-        <Text>{data.date}</Text>
-        <Switch
-          onValueChange={value => {}}
-          value={data.checked}
-        />
-      </Row>
-    )
-  }
-
-  consolidacoesView() {
-   return (
-      <View style={{ borderRadius: 5, marginTop: 15, padding: 8, backgroundColor: Colors.GRAY_LIGHT, }}>
-        <Subtitle>Consolidações</Subtitle>
-        <View styleName = "horizontal space-between" >
-          <View>
-            <Caption>
-              <Icon styleName="disclosure" name="check"/>
-              Sophia
-            </Caption>
-            <Caption>
-              <Icon styleName="disclosure" name="times"/>
-              Sophia
-            </Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-          </View>
-          <View>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-          </View>
-          <View>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-            <Caption>Sophia</Caption>
-          </View>
-        </View>
-      </View>)
-  }
-
-  render () {
-    return (
-      <View style={{...Styles.mainContainer }} styleName='vertical'>
-        <View style={{ evoluation: 2 }}>
-          <Header title="Member name completo" {...this.props} />
-          <Caption>rua juventina ricardina dos santos, 109</Caption>
-          <Divider styleName="line" style={{ marginBottom: 10}}/>
-          <View styleName='horizontal space-between'>
-            <Text>(00) 00000-0000</Text>
-            <Text>08/02/1996</Text>
-          </View>
-        </View>
-        { this.consolidacoesView() }
-        <Divider styleName="line" style={{ marginBottom: 10}}/>
-        <Subtitle styleName='bold'>Frequencia</Subtitle>
-        <ListView data={this.state.frequencys} renderRow={this.renderRow} />
+      <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
+        <Divider />
+        <Subtitle>Nome das coisas</Subtitle>
+        <Caption>asda asdasd</Caption>
+        <Caption>(00) 00000-0000</Caption>
       </View>
-    )
+    );
+  };
+
+  render() {
+    return (
+      <View
+        style={{ ...Styles.mainContainer }}
+        styleName="vertical space-between">
+        <View style={{ evoluation: 2 }}>
+          <Header search title="Membros" {...this.props} />
+        </View>
+        <ListView data={this.state.consolidations} renderRow={this.renderRow} />
+      </View>
+    );
   }
 }

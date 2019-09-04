@@ -11,38 +11,40 @@ export default class DashboardScreen extends Component {
     super(props)
 
     this.state = {
-      indicators: [{
+      indicators: [
+        {
           name: "Consolidação",
           porcent: 30,
-          to: "ConsolidationListScreen"
+          to: "ConsolidationListScreen",
         },
         {
           name: "frequencia",
           porcent: 30,
-          to: ""
-        }
+          to: "",
+        },
       ],
-      actions: [{
+      actions: [
+        {
           name: "Adicionar Consolidação",
           to: "ConsolidationAddScreen",
-          icon: "book"
+          icon: "book",
         },
         {
           name: "Adicionar Presença",
-          to: "",
-          icon: "hand-paper"
+          to: "FrequencyAddScreen",
+          icon: "hand-paper",
         },
         {
           name: "Adicioanr Membro",
-          to: "",
-          icon: "grin-beam"
+          to: "MemberAddScreen",
+          icon: "grin-beam",
         },
         {
           name: "Adicioanr Noticias",
           to: "",
-          icon: "pen-alt"
-        }
-      ]
+          icon: "pen-alt",
+        },
+      ],
     };
   }
 
@@ -51,7 +53,7 @@ export default class DashboardScreen extends Component {
       <View style={ Styles.mainContainer } styleName="vertical space-between">
         <Indicator {...this.props} style={{ flex: 2 }} data={this.state.indicators} />
 
-        < ActionsButton {
+        <ActionsButton {
           ...this.props
         }
         data = {

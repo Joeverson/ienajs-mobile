@@ -16,7 +16,7 @@ class NavigationTab extends React.Component {
       },
       {
         name: "Membros",
-        to: "",
+        to: "MemberListScreen",
         icon: "users"
       },
       {

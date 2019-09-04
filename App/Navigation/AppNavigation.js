@@ -4,7 +4,9 @@ import DashboardScreen from "../Containers/DashboardScreen";
 import ConsolidationListScreen from "../Containers/Consolidation/ConsolidationListScreen";
 import ConsolidationAddScreen from "../Containers/Consolidation/ConsolidationAddScreen";
 import FrequencyListScreen from "../Containers/Frequency/FrequencyListScreen";
+import FrequencyAddScreen from "../Containers/Frequency/FrequencyAddScreen";
 import MemberListScreen from "../Containers/Member/MemberListScreen";
+import MemberAddScreen from "../Containers/Member/MemberAddScreen";
 
 import styles from "./Styles/NavigationStyles";
 
@@ -17,6 +19,7 @@ const PrimaryNav = createStackNavigator(
     DashboardScreen: { screen: DashboardScreen },
 
     // frequencia
+    FrequencyAddScreen: { screen: FrequencyAddScreen },
     FrequencyListScreen: { screen: FrequencyListScreen },
 
     // consolidação
@@ -24,14 +27,15 @@ const PrimaryNav = createStackNavigator(
     ConsolidationAddScreen: { screen: ConsolidationAddScreen },
 
     // membros
-    MemberListScreen: { screen: MemberListScreen }
+    MemberAddScreen: { screen: MemberAddScreen },
+    MemberListScreen: { screen: MemberListScreen },
   },
   {
     headerMode: "none",
-    initialRouteName: "DashboardScreen",
+    initialRouteName: "MemberAddScreen",
     navigationOptions: {
-      headerStyle: styles.header
-    }
+      headerStyle: styles.header,
+    },
   }
 );
 
