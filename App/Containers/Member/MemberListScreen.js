@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { TouchableOpacity } from "react-native"
 import { View, Subtitle, ListView, Caption, Divider, Text } from "@shoutem/ui";
 import Styles from "../Styles/ConsolidationListScreenStyles";
 import EmptyData from "../../Components/EmptyData";
@@ -11,12 +12,14 @@ export default class extends Component {
   state = {
     members: [
       {
+        id: "12",
         name: "asda",
         endereco: "asdassad",
         phone: "(00) 00000-0000",
         consolidacao: [],
       },
       {
+        id: "123",
         name: "Joerverson",
         endereco: "R. juventina ricardina dos santos",
         phone: "(00) 00000-0000",
@@ -27,12 +30,15 @@ export default class extends Component {
 
   renderRow = data => {
     return (
-      <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
-        <Divider />
-        <Subtitle>{data.name}</Subtitle>
-        <Caption>{data.endereco}</Caption>
-        <Caption>{data.phone}</Caption>
-      </View>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate("MemberDetailsScreen", { id: data.id })}>
+        <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
+          <Divider />
+          <Subtitle>{data.name}</Subtitle>
+          <Caption>{data.endereco}</Caption>
+          <Caption>{data.phone}</Caption>
+        </View>
+      </TouchableOpacity>
     );
   };
 
