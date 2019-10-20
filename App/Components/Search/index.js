@@ -25,7 +25,7 @@ class Header extends PureComponent {
               backgroundColor: Colors.WHITE,
             }}
             placeholder={this.props.placeholder}
-            onChangeText={() => {}}
+            onChangeText={text => this.props.onChangeText(text)}
           />
           <TouchableOpacity
             onPress={this.props.onPress}

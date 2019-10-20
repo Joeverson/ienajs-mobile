@@ -1,56 +1,26 @@
 import React, { Component } from "react";
-import {
-  View,
-  Subtitle,
-  ListView,
-  Caption,
-  Divider,
-  NavigationBar,
-  Title,
-} from "@shoutem/ui";
+import { View, Subtitle, ListView, Caption, Divider, Text } from "@shoutem/ui";
 import Styles from "../Styles/ConsolidationListScreenStyles";
+import EmptyData from "../../Components/EmptyData";
 
 // components
 import Header from "../../Components/Header";
-import Search from "../../Components/Search";
+// import Search from "../../Components/Search";
 
 export default class extends Component {
   state = {
-    consolidations: [
+    members: [
       {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
+        name: "asda",
+        endereco: "asdassad",
+        phone: "(00) 00000-0000",
+        consolidacao: [],
       },
       {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
-      },
-      {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
-      },
-      {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
-      },
-      {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
-      },
-      {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
-      },
-      {
-        name: "asdasd",
-        endereco: "asdasdasd",
-        consolidations: [],
+        name: "Joerverson",
+        endereco: "R. juventina ricardina dos santos",
+        phone: "(00) 00000-0000",
+        consolidacao: [],
       },
     ],
   };
@@ -59,9 +29,9 @@ export default class extends Component {
     return (
       <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
         <Divider />
-        <Subtitle>Nome das coisas</Subtitle>
-        <Caption>asda asdasd</Caption>
-        <Caption>(00) 00000-0000</Caption>
+        <Subtitle>{data.name}</Subtitle>
+        <Caption>{data.endereco}</Caption>
+        <Caption>{data.phone}</Caption>
       </View>
     );
   };
@@ -72,9 +42,17 @@ export default class extends Component {
         style={{ ...Styles.mainContainer }}
         styleName="vertical space-between">
         <View style={{ evoluation: 2 }}>
-          <Header search title="Membros" {...this.props} />
+          <Header
+            search
+            searchBy="name"
+            searchData={this.state.members}
+            searchFiltered={members => this.setState({ members })}
+            title="Membros"
+            {...this.props}
+          />
         </View>
-        <ListView data={this.state.consolidations} renderRow={this.renderRow} />
+        <EmptyData visible={this.state.members.length === 0} />
+        <ListView data={this.state.members} renderRow={this.renderRow} />
       </View>
     );
   }
