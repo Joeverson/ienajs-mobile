@@ -1,65 +1,84 @@
-import React, { Component } from "react";
-import { TouchableOpacity } from "react-native"
-import { View, Subtitle, ListView, Caption, Divider, Text } from "@shoutem/ui";
-import Styles from "../Styles/ConsolidationListScreenStyles";
-import EmptyData from "../../Components/EmptyData";
+import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
+import { View, Subtitle, ListView, Caption, Divider, Text } from '@shoutem/ui'
+import Styles from '../Styles/ConsolidationListScreenStyles'
+import EmptyData from '../../Components/EmptyData'
+import { connect } from 'react-redux'
 
 // components
-import Header from "../../Components/Header";
+import Header from '../../Components/Header'
+import { MemberTypes } from '../../Redux/MemberRedux'
 // import Search from "../../Components/Search";
 
-export default class extends Component {
+class MemberListScreen extends Component {
   state = {
-    members: [
-      {
-        id: "12",
-        name: "asda",
-        endereco: "asdassad",
-        phone: "(00) 00000-0000",
-        consolidacao: [],
-      },
-      {
-        id: "123",
-        name: "Joerverson",
-        endereco: "R. juventina ricardina dos santos",
-        phone: "(00) 00000-0000",
-        consolidacao: [],
-      },
-    ],
-  };
+    members: []
+  }
+
+  componentDidMount () {
+    this.props.list()
+    this.setState({ members: this.props.members })
+  }
+
+  static getDerivedStateFromProps (nextProps, prevState) {
+    return {
+      ...prevState,
+      ...nextProps
+    }
+  }
 
   renderRow = data => {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("MemberDetailsScreen", { id: data.id })}>
+        onPress={() =>
+          this.props.navigation.navigate('MemberDetailsScreen', { id: data.id })
+        }>
         <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
           <Divider />
           <Subtitle>{data.name}</Subtitle>
-          <Caption>{data.endereco}</Caption>
+          <Caption>{data.address}</Caption>
           <Caption>{data.phone}</Caption>
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
-  render() {
+  render () {
     return (
       <View
         style={{ ...Styles.mainContainer }}
-        styleName="vertical space-between">
+        styleName='vertical space-between'>
         <View style={{ evoluation: 2 }}>
           <Header
             search
-            searchBy="name"
+            searchBy='name'
             searchData={this.state.members}
             searchFiltered={members => this.setState({ members })}
-            title="Membros"
+            title='Membros'
             {...this.props}
           />
         </View>
         <EmptyData visible={this.state.members.length === 0} />
         <ListView data={this.state.members} renderRow={this.renderRow} />
       </View>
-    );
+    )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    members: state.members.data
+  }
+}
+
+const mapStateToDispatchProps = dispatch => ({
+  list: () =>
+    dispatch({
+      type: MemberTypes.GET_MEMBERS
+    })
+})
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatchProps
+)(MemberListScreen)

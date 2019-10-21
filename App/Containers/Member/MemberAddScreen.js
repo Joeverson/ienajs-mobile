@@ -25,7 +25,7 @@ class MemberAddScreen extends Component {
     const { form } = this.state
     // todo create the validation data input
     // save the api
-    form.date = moment(form.date).format('YYYY-MM-DD')
+    form.birthday = moment(form.date).format('YYYY-MM-DD')
     this.props.save(form);
   }
 
