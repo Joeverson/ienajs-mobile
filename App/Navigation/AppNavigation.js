@@ -34,7 +34,7 @@ const PrimaryNav = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "DashboardScreen",
+    initialRouteName: "MemberAddScreen",
     navigationOptions: {
       headerStyle: styles.header,
     },

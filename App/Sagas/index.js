@@ -1,16 +1,17 @@
 import { takeLatest, all } from 'redux-saga/effects'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
+import Service from "../Services/Endpoints";
 
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux'
-import { GithubTypes } from '../Redux/GithubRedux'
+import { MemberTypes } from '../Redux/MemberRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
-import { getUserAvatar } from './GithubSagas'
+import { save } from './MemberSagas'
 
 /* ------------- API ------------- */
 
@@ -25,6 +26,6 @@ export default function * root () {
     takeLatest(StartupTypes.STARTUP, startup),
 
     // some sagas receive extra parameters in addition to an action
-    // takeLatest(GithubTypes.USER_REQUEST, getUserAvatar)
+    takeLatest(MemberTypes.SAVE, save, Service)
   ])
 }

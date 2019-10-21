@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {
   View,
-  Subtitle,
 } from '@shoutem/ui'
+import moment from 'moment'
 import Styles from '../Styles/FrequencyListScreenStyles'
 
 
@@ -12,19 +12,27 @@ import { Colors } from '../../Themes';
 import Input from '../../Components/Input';
 import Datepicker from '../../Components/Datepicker';
 import RoundedButton from '../../Components/RoundedButton';
+import { connect } from "react-redux";
+import { MemberTypes } from '../../Redux/MemberRedux';
 
-export default class extends Component {
+
+class MemberAddScreen extends Component {
   state = {
-    frequencys: [
-      {
-        date: '10/09/2019',
-        checked: false,
-      },
-      {
-        date: '17/09/2019',
-        checked: true,
-      }
-    ]
+    form: undefined
+  }
+
+  save = () => {
+    const { form } = this.state
+    // todo create the validation data input
+    // save the api
+    form.date = moment(form.date).format('YYYY-MM-DD')
+    this.props.save(form);
+  }
+
+  handlerText = data => {
+    this.setState({
+      form: {...this.state.form, [data.name]: data.text}
+    })
   }
 
   render () {
@@ -33,17 +41,52 @@ export default class extends Component {
         <View style={{ evoluation: 2 }}>
           <Header title="Registrar Novo Membro" {...this.props} />
         </View>
-        {/* <Subtitle styleName="bold">Info. Gerais</Subtitle> */}
+
         <View>
-          <Input icon="user" placeholder="Nome" />
-          <Input icon="map-marker-alt" placeholder="Endereço" />
-          <Input icon="phone-square" placeholder="Telefone" />
-          <Datepicker />
+          <Input
+            onChange={text => this.handlerText({ text, name: "name" })}
+            icon="user"
+            placeholder="Nome"
+          />
+          <Input
+            onChange={text => this.handlerText({ text, name: "address" })}
+            icon="map-marker-alt"
+            placeholder="Endereço"
+          />
+          <Input
+            onChange={text => this.handlerText({ text, name: "phone" })}
+            icon="phone-square"
+            placeholder="Telefone"
+          />
+          <Datepicker
+            onChange={date =>
+              this.setState({
+                form: { ...this.state.form, birthday: date },
+              })
+            }
+          />
         </View>
         <View styleName="horizontal h-end">
-          <RoundedButton />
+          <RoundedButton onPress={this.save} />
         </View>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+  };
+};
+
+const mapStateToDispatchProps = dispatch => ({
+  save: data => dispatch({
+    type: MemberTypes.SAVE,
+    data
+  }) 
+});
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatchProps
+)(MemberAddScreen);

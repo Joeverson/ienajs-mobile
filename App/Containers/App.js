@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import NavigationTab from '../Components/NavigationTab';
+import Notification from '../Components/Notification'
 
 // create our store
 const store = createStore()
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <RootContainer />
+        <Notification />
         <NavigationTab nav={store} />
       </Provider>
     )

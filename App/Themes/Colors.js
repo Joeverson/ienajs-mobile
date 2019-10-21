@@ -28,7 +28,10 @@ const colors = {
   BLUE_LIGHT: "##67C5DF",
   BLACK: '#1c1c1c',
   GRAY_LIGHT: '#D8D8D8',
-  WHITE: '#FFF'
+  WHITE: '#FFF',
+
+  GREEN_LIGHT: '#7ED957',
+  RED_LIGHT: '#F6511D' 
 };
 
 export default colors;

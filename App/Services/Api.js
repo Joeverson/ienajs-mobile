@@ -9,7 +9,7 @@ import {
 
 // our 'constructor'
 const api = create({
-  baseURL: 'http://dupdevelop.com.br:3007',
+  baseURL: 'http://192.168.1.6:3007/api/v1',
   headers: {
     "Cache-Control": "no-cache",
     Authorization: ""
@@ -23,7 +23,16 @@ const api = create({
  * dados de retorno.
  */
 api.addResponseTransform(response => {
-
+  if (response.ok) {
+    if (!response.data.status.success) {
+      console.log(response.data.status.message);      
+      response.done = false
+    } else {
+      response.done = true
+    }
+  } else {
+    response.done = false
+  }
 });
 
 // quando faz uma requisição a api ele deve adicioanr o token

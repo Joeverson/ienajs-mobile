@@ -11,6 +11,10 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 class Datepicker extends PureComponent {
   state = { date: moment().format("DD/MM/YYYY") };
 
+  componentDidMount() {
+    this.props.onChange(this.state.date);
+  }
+
   render() {
     return (
       <View
