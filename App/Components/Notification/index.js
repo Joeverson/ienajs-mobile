@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Row, View, Text } from '@shoutem/ui'
+import { Row, View, Text, TouchableOpacity } from '@shoutem/ui'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Colors } from '../../Themes'
 import { connect } from 'react-redux'
@@ -13,35 +13,37 @@ class Notification extends PureComponent {
     super(props)
 
     this.state = {
-      hasError: false
+      hasError: false,
+      timer: undefined
     }
   }
 
   render () {
     if (this.props.notification.show) {
-      setTimeout(() => {
-        this.props.close()
-      }, 5000)
-    }
-
-    if (this.props.notification.show) {
       return (
         <View>
-          <Row
-            styleName='small'
-            style={{
-              elevation: 2,
-              backgroundColor: this.props.notification.color
-            }}>
-            <Icon
-              name={this.props.notification.icon}
-              size={20}
-              style={{ marginRight: 10, color: Colors.WHITE }}
-            />
-            <Text style={{ color: Colors.WHITE }}>
-              {this.props.notification.message}
-            </Text>
-          </Row>
+          <TouchableOpacity onPress={() => this.props.close()}>
+            <Row
+              styleName='small'
+              style={{
+                elevation: 2,
+                backgroundColor: this.props.notification.color
+              }}>
+              <Icon
+                name={this.props.notification.icon}
+                size={20}
+                style={{ marginRight: 10, color: Colors.WHITE }}
+              />
+              <Text style={{ color: Colors.WHITE }}>
+                {this.props.notification.message}
+              </Text>
+              <Icon
+                name='times-circle'
+                size={40}
+                style={{ marginRight: 10, color: Colors.WHITE }}
+              />
+            </Row>
+          </TouchableOpacity>
         </View>
       )
     }

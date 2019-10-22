@@ -1,21 +1,21 @@
-import React, { PureComponent } from "react";
-import { View, Row, Heading, TouchableOpacity } from "@shoutem/ui";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { Colors } from "../../Themes";
-import Search from "../../Components/Search";
+import React, { PureComponent } from 'react'
+import { View, Row, Heading, TouchableOpacity } from '@shoutem/ui'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { Colors } from '../../Themes'
+import Search from '../../Components/Search'
 
-//import { Test } from './Header.styles';
+// import { Test } from './Header.styles';
 
 class Header extends PureComponent {
   state = {
-    search: "",
-    searchBy: "name",
+    search: '',
+    searchBy: 'name',
     dataOrigin: [],
     dataFiltered: [],
-    hasError: false,
-  };
+    hasError: false
+  }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       dataOrigin: this.props.searchData,
       dataFiltered: this.props.searchData,
@@ -25,21 +25,39 @@ class Header extends PureComponent {
 
   _search = () => {
     if (this.props.search) {
-      return <Search onChangeText={text => {
-        this.props.searchFiltered(this.state.dataOrigin.filter(d =>
-          d[this.state.searchBy]
-            .trim()
-            .toLowerCase()
-            .match(text.toLowerCase())
-        ));
-      }} />;
+      return (
+        <Search
+          onChangeText={text => {
+            this.props.searchFiltered(
+              this.state.dataOrigin.filter(d =>
+                d[this.state.searchBy]
+                  .trim()
+                  .toLowerCase()
+                  .match(text.toLowerCase())
+              )
+            )
+          }}
+        />
+      )
     }
-  };
+  }
 
-  render() {
-    const title = this.props.title.split(" ");
-    const firstName = title.shift();
-    const lastName = title.join(" ");
+  rightIcon = () => {
+    if (this.props.rightIcon) {
+      return (
+        <TouchableOpacity
+          onPress={this.props.rightIconPress}
+          style={{ padding: 10 }}>
+          <Icon size={18} color='white' name={this.props.rightIcon} />
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  render () {
+    const title = this.props.title.split(' ')
+    const firstName = title.shift()
+    const lastName = title.join(' ')
 
     return (
       <View
@@ -48,23 +66,26 @@ class Header extends PureComponent {
           paddingLeft: 10,
           paddingRight: 10,
           paddingBottom: 5,
-          elevation: 1,
+          elevation: 1
         }}>
-        <View style={{}}>
+        <View styleName='horizontal space-between' style={{}}>
           <TouchableOpacity
             onPress={() => this.props.navigation.goBack()}
             style={{ padding: 10 }}>
-            <Icon size={18} color="white" name="arrow-left" />
+            <Icon size={18} color='white' name='arrow-left' />
           </TouchableOpacity>
+          {
+            this.rightIcon()
+          }
         </View>
-        <View style={{ marginLeft: 5, justifyContent: "center" }}>
-          <Heading style={{ color: "white" }}>{firstName}</Heading>
-          <Heading style={{ color: "white" }}>{lastName}</Heading>
+        <View style={{ marginLeft: 5, justifyContent: 'center' }}>
+          <Heading style={{ color: 'white' }}>{firstName}</Heading>
+          <Heading style={{ color: 'white' }}>{lastName}</Heading>
         </View>
         {this._search()}
       </View>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

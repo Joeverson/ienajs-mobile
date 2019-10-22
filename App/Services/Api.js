@@ -6,6 +6,8 @@ import Auth from "../Helpers/Auth";
 import {
   NavigationActions
 } from "react-navigation";
+import { NavigationActions } from 'react-navigation'
+import { store } from '../Containers/App'
 
 // our 'constructor'
 const api = create({
@@ -25,7 +27,7 @@ const api = create({
 api.addResponseTransform(response => {
   if (response.ok) {
     if (!response.data.status.success) {
-      console.log(response.data.status.message);      
+      store.dispatch(NotificationActions.danger(response.data.status.message))
       response.done = false
     } else {
       response.done = true

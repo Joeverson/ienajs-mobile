@@ -32,7 +32,7 @@ class Datepicker extends PureComponent {
           style={{
             marginTop: -28,
           }}
-          date={this.state.date}
+          date={this.props.date || this.state.date}
           mode="date"
           placeholder={this.props.placeholder}
           format="DD/MM/YYYY"

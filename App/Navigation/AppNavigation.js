@@ -7,6 +7,7 @@ import FrequencyListScreen from "../Containers/Frequency/FrequencyListScreen";
 import FrequencyAddScreen from "../Containers/Frequency/FrequencyAddScreen";
 import MemberListScreen from "../Containers/Member/MemberListScreen";
 import MemberAddScreen from "../Containers/Member/MemberAddScreen";
+import MemberEditScreen from "../Containers/Member/MemberEditScreen";
 import MemberDetailsScreen from "../Containers/Member/MemberDetailsScreen";
 
 import styles from "./Styles/NavigationStyles";
@@ -29,12 +30,13 @@ const PrimaryNav = createStackNavigator(
 
     // membros
     MemberAddScreen: { screen: MemberAddScreen },
+    MemberEditScreen: { screen: MemberEditScreen },
     MemberListScreen: { screen: MemberListScreen },
     MemberDetailsScreen: { screen: MemberDetailsScreen },
   },
   {
     headerMode: "none",
-    initialRouteName: "MemberAddScreen",
+    initialRouteName: "MemberListScreen",
     navigationOptions: {
       headerStyle: styles.header,
     },

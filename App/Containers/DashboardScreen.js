@@ -16,11 +16,13 @@ export default class DashboardScreen extends Component {
           name: "Consolidação",
           porcent: 30,
           to: "ConsolidationListScreen",
+          isUnvaliable: false
         },
         {
           name: "frequencia",
           porcent: 30,
           to: "",
+          isUnvaliable: false
         },
       ],
       actions: [
@@ -28,21 +30,25 @@ export default class DashboardScreen extends Component {
           name: "Adicionar Consolidação",
           to: "ConsolidationAddScreen",
           icon: "book",
+          isUnvaliable: false
         },
         {
           name: "Adicionar Presença",
           to: "FrequencyAddScreen",
           icon: "hand-paper",
+          isUnvaliable: false
         },
         {
-          name: "Adicioanr Membro",
+          name: "Adicionar Membro",
           to: "MemberAddScreen",
           icon: "grin-beam",
+          isUnvaliable: true
         },
         {
-          name: "Adicioanr Noticias",
+          name: "Adicionar Noticias",
           to: "",
           icon: "pen-alt",
+          isUnvaliable: false
         },
       ],
     };

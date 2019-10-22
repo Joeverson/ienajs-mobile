@@ -39,7 +39,7 @@ export const setSuccess = (state, { message }) =>
   state.merge({ show: true, icon: "check", color: Colors.GREEN_LIGHT, message })
 
 export const setDanger = (state, { message }) =>
-  state.merge({ show: true, icon: "times", color: Colors.RED_LIGHT, message })
+  state.merge({ show: true, icon: "exclamation-triangle", color: Colors.RED_LIGHT, message })
 
 /* ------------- Hookup Reducers To Types ------------- */
 

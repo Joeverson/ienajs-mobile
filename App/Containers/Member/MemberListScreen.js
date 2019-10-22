@@ -31,7 +31,7 @@ class MemberListScreen extends Component {
     return (
       <TouchableOpacity
         onPress={() =>
-          this.props.navigation.navigate('MemberDetailsScreen', { id: data.id })
+          this.props.navigation.navigate('MemberDetailsScreen', { data })
         }>
         <View style={{ marginLeft: 16, marginRight: 16, paddingTop: 10 }}>
           <Divider />

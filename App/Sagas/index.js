@@ -11,7 +11,7 @@ import { MemberTypes } from '../Redux/MemberRedux'
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
-import { save, list } from './MemberSagas'
+import { save, list, update } from './MemberSagas'
 
 /* ------------- API ------------- */
 
@@ -27,6 +27,7 @@ export default function * root () {
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(MemberTypes.SAVE, save, Service),
+    takeLatest(MemberTypes.UPDATE, update, Service),
     takeLatest(MemberTypes.GET_MEMBERS, list, Service)
   ])
 }

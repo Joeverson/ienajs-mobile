@@ -14,21 +14,17 @@ import Input from '../../Components/Input'
 import Datepicker from '../../Components/Datepicker'
 import RoundedButton from '../../Components/RoundedButton'
 
-class MemberAddScreen extends Component {
+class MemberEditScreen extends Component {
   state = {
-    form: {
-      phone: '',
-      address: '',
-      name: ''
-    }
+    form: this.props.navigation.state.params.data
   }
 
-  save = () => {
+  update = () => {
     const { form } = this.state
     // todo create the validation data input
     // save the api
     form.birthday = moment(form.date).format('YYYY-MM-DD')
-    this.props.save(form)
+    this.props.update(form)
   }
 
   handlerText = data => {
@@ -41,16 +37,18 @@ class MemberAddScreen extends Component {
     return (
       <View styleName='space-between'>
         <View style={{ evoluation: 2 }}>
-          <Header title='Registrar Novo Membro' {...this.props} />
+          <Header title='Atualizar Membro' {...this.props} />
         </View>
 
         <View>
           <Input
+            defaultValue={this.state.form.name}
             onChange={text => this.handlerText({ text, name: 'name' })}
             icon='user'
             placeholder='Nome'
           />
           <Input
+            defaultValue={this.state.form.address}
             onChange={text => this.handlerText({ text, name: 'address' })}
             icon='map-marker-alt'
             placeholder='Endereço'
@@ -65,6 +63,7 @@ class MemberAddScreen extends Component {
             validation={() => this.state.phone === ''}
           />
           <Datepicker
+            date={this.state.form.birthday}
             onChange={date =>
               this.setState({
                 form: { ...this.state.form, birthday: date }
@@ -73,7 +72,7 @@ class MemberAddScreen extends Component {
           />
         </View>
         <View styleName='horizontal h-end'>
-          <RoundedButton onPress={this.save} />
+          <RoundedButton onPress={this.update} />
         </View>
       </View>
     )
@@ -85,9 +84,9 @@ const mapStateToProps = state => {
 }
 
 const mapStateToDispatchProps = dispatch => ({
-  save: data =>
+  update: data =>
     dispatch({
-      type: MemberTypes.SAVE,
+      type: MemberTypes.UPDATE,
       data
     })
 })
@@ -95,4 +94,4 @@ const mapStateToDispatchProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapStateToDispatchProps
-)(MemberAddScreen)
+)(MemberEditScreen)
