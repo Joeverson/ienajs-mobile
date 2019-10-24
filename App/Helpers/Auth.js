@@ -18,6 +18,7 @@ class Auth {
 
   async setUser(user) {
     await AsyncStorage.setItem('@novaalianca/user', JSON.stringify(user))
+    await this.setLogged(true)
   }
 
   async getToken() {

@@ -35,16 +35,16 @@ export const NotificationSelectors = {
 export const setClose = (state, { }) =>
   state.merge({ show: false })
 
-export const setSuccess = (state, { message }) =>
+export const success = (state, { message }) =>
   state.merge({ show: true, icon: "check", color: Colors.GREEN_LIGHT, message })
 
-export const setDanger = (state, { message }) =>
+export const danger = (state, { message }) =>
   state.merge({ show: true, icon: "exclamation-triangle", color: Colors.RED_LIGHT, message })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLOSE]: setClose,
-  [Types.DANGER]: setDanger,
-  [Types.SUCCESS]: setSuccess
+  [Types.DANGER]: danger,
+  [Types.SUCCESS]: success
 })

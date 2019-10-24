@@ -6,5 +6,9 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   background: {
     backgroundColor: colors.BLUE
+  },
+  logo: {
+    width: 200,
+    height: 200
   }
 });

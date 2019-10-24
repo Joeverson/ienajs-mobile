@@ -1,22 +1,25 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import LaunchScreen from "../Containers/LaunchScreen";
-import DashboardScreen from "../Containers/DashboardScreen";
-import ConsolidationListScreen from "../Containers/Consolidation/ConsolidationListScreen";
-import ConsolidationAddScreen from "../Containers/Consolidation/ConsolidationAddScreen";
-import FrequencyListScreen from "../Containers/Frequency/FrequencyListScreen";
-import FrequencyAddScreen from "../Containers/Frequency/FrequencyAddScreen";
-import MemberListScreen from "../Containers/Member/MemberListScreen";
-import MemberAddScreen from "../Containers/Member/MemberAddScreen";
-import MemberEditScreen from "../Containers/Member/MemberEditScreen";
-import MemberDetailsScreen from "../Containers/Member/MemberDetailsScreen";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from 'react-navigation'
+import LaunchScreen from '../Containers/LaunchScreen'
+import DashboardScreen from '../Containers/DashboardScreen'
+import ConsolidationListScreen from '../Containers/Consolidation/ConsolidationListScreen'
+import ConsolidationAddScreen from '../Containers/Consolidation/ConsolidationAddScreen'
+import FrequencyListScreen from '../Containers/Frequency/FrequencyListScreen'
+import FrequencyAddScreen from '../Containers/Frequency/FrequencyAddScreen'
+import MemberListScreen from '../Containers/Member/MemberListScreen'
+import MemberAddScreen from '../Containers/Member/MemberAddScreen'
+import MemberEditScreen from '../Containers/Member/MemberEditScreen'
+import MemberDetailsScreen from '../Containers/Member/MemberDetailsScreen'
+import LoginScreen from '../Containers/Auth/LoginScreen'
 
-import styles from "./Styles/NavigationStyles";
+import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
-const PrimaryNav = createStackNavigator(
+const AuthStack = createStackNavigator(
   {
-    LaunchScreen: { screen: LaunchScreen },
-
     // dashboard
     DashboardScreen: { screen: DashboardScreen },
 
@@ -32,15 +35,44 @@ const PrimaryNav = createStackNavigator(
     MemberAddScreen: { screen: MemberAddScreen },
     MemberEditScreen: { screen: MemberEditScreen },
     MemberListScreen: { screen: MemberListScreen },
-    MemberDetailsScreen: { screen: MemberDetailsScreen },
+    MemberDetailsScreen: { screen: MemberDetailsScreen }
   },
   {
-    headerMode: "none",
-    initialRouteName: "MemberListScreen",
+    headerMode: 'none',
+    initialRouteName: 'DashboardScreen',
     navigationOptions: {
-      headerStyle: styles.header,
-    },
+      headerStyle: styles.header
+    }
   }
-);
+)
 
-export default createAppContainer(PrimaryNav);
+const GuestStack = createStackNavigator(
+  {
+    // acionar aqui as areas que os usuarios não logados podem entrar
+    LoginScreen: { screen: LoginScreen }
+  },
+  {
+    headerMode: 'none'
+  }
+)
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      LaunchScreen: createStackNavigator(
+        {
+          LaunchScreen: { screen: LaunchScreen }
+        },
+        {
+          initialRouteParams: {ok: false},
+          headerMode: 'none'
+        }
+      ),
+      AuthStack,
+      GuestStack
+    },
+    {
+      initialRouteName: 'LaunchScreen'
+    }
+  )
+)

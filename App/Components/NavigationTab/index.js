@@ -8,7 +8,7 @@ import {
 
 class NavigationTab extends React.Component {
   state = {
-    menus: [
+    menus: this.props.menus || [
       {
         name: "Notícias",
         to: "",

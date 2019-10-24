@@ -7,11 +7,13 @@ import Service from "../Services/Endpoints";
 
 import { StartupTypes } from '../Redux/StartupRedux'
 import { MemberTypes } from '../Redux/MemberRedux'
+import { AuthTypes } from '../Redux/AuthRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { save, list, update } from './MemberSagas'
+import { login, logout } from './AuthSagas'
 
 /* ------------- API ------------- */
 
@@ -28,6 +30,10 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(MemberTypes.SAVE, save, Service),
     takeLatest(MemberTypes.UPDATE, update, Service),
-    takeLatest(MemberTypes.GET_MEMBERS, list, Service)
+    takeLatest(MemberTypes.GET_MEMBERS, list, Service),
+    
+    // auth
+    takeLatest(AuthTypes.LOGIN, login, Service),
+    takeLatest(AuthTypes.LOGOUT, logout, Service)
   ])
 }
